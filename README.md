@@ -1,11 +1,7 @@
-# KMB & LWB combined headway ETA
-This is an interface for the KMB / LWB ETA API which allows choosing a stop,
-and shows the ETA of the upcoming 3 departures combined from a set of routes
-serving the stop.
+# A forked work of KMB & LWB combined headway ETA
 
-[There is also a sister project for Citybus & NWFB available.](https://github.com/miklcct/ctb-nwfb-combined-headway-eta)
+## Features from orginal works (Direct clone from Michael's wordings)
 
-## Features
 * ETA automatically refreshes every 15 seconds.
 
 * Direct bookmark and load a specified combination of routes at a certain stop.
@@ -15,20 +11,27 @@ serving the stop.
   For example, if routes 258D and 259D at Tuen Mun Road Interchange is already chosen,
   typing 61X into the route selection box will add 61X into the chosen combination
   with the correct direction automatically selected.
-  
+
   Limitation: if the newly-added route serves the stop in both directions (e.g. 64K @ Kam Sheung Road Station),
   or passing through the same stop in the same direction twice (e.g. 54 @ Kam Sheung Road Station),
   only one of the stop will be automatically added. You can choose the alternatives manually.
-  
+
 * The existing combination is preserved when another stop with the same combination in the same direction is chosen.
 
   For example, if you have selected routes 61X, 258, 259D at Beacon Heights,
   choosing Wong Tai Sin Station from the stop list now will still load the combination of 61X, 258D, 259D,
   choosing Millennium City from the stop list will load 258D, 259D because 61X do not serve the stop.
-  
+
   Limitation: if the newly-chosen stop serves the same route in the same direction twice at the exact same pole,
   e.g. choosing 71S at Kwong Fuk Playground, then choose Tai Po Market Station (TA10-T-1250-0),
   both stopping of 71S at that same pole will be selected automatically.
+
+## Features extended from my addon works
+
+* Change the layout
+
+* Using the local storage in browser to store bookmarks your previous check. 
+
 
 ## Installation
 No installation is needed. Clone the repository and open `index.xhtml`.
@@ -46,16 +49,13 @@ Alternatively you may type in the other routes directly into the box as well.
 of the desired combination is shown directly without selecting again.
 
 ## Demo
-[A demo instance is set up.](http://kmb_eta.csproject.org/)
+[A demo instance is set up.]
 
 ## Issues
 * A proxy server is required to bypass the CORS restriction.
 The proxy URL is defined in `scripts/Common.js`.
-The address provided in the repository is a private proxy server which can only be used to 
+The address provided in the repository is a private proxy server which can only be used to
 query the KMB mobile API.
 
 ## Acknowledgement
-This project is possible only when given the knowledge of how the mobile API works,
-which is studied as
-[a final year project by HKU CS student Wong San Yu](https://i.cs.hku.hk/fyp/2018/report/final_report/Wong%20San%20Yu_12307104_assignsubmission_file_/final-report-revised.pdf),
-with a working Android implementation [BusETA](https://github.com/alvinhkh/buseta) by AlvinHKH.
+Thanks for the foundaation work done by Michael Tsang and please refer to the Acknowledgement section of his orginal works

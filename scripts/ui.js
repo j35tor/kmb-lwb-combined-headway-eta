@@ -64,6 +64,8 @@ $(document).ready(
         const $eta_last_updated = $('#eta_last_updated');
         const $variant_list = $('#variant_list');
         const $one_departure = $('#one_departure');
+        const $bookmark = $('#bookmark');
+        const $bookmarkStore = $('#bookmarkStore');
 
         $('#failure').css('display', 'none');
 
@@ -407,6 +409,37 @@ $(document).ready(
                 + ' combined ETA';
         }
 
+        // function dummy() { };
+        $bookmark.click(
+            function() {
+
+                          alert ( event.target.id + "_" + window.location + " " +
+                                document.getElementById("bookmark_label").value
+                                )
+                          /* localStorage.setItem( document.getElementById("bookmark_label").value ,
+                                  window.location ) */
+
+                      }
+
+                      );
+
+        //  $bookmarkStore.click( function() {  alert("This is Store") } )
+//=======================
+
+        /*function html_table_header(localID)
+        {
+          var mylocalStore = document.getElementById(localID);
+          document.getElementById(localID).innerHTML = "";
+          var tableHeader =   mylocalStore.insertRow() ;
+          var keyHeaderCell = tableHeader.insertCell(0) ;
+          keyHeaderCell.innerHTML = "Key" ;
+          keyHeaderCell.id = "keyHeader" ;
+          var valueHeaderCell = tableHeader.insertCell(1) ;
+          valueHeaderCell.innerHTML = "Value" ;
+          valueHeaderCell.id = "valueHeader"
+        }
+        */
+//=========================
         $stop_list.change(
             function () {
                 /** @var {Stop|undefined} */

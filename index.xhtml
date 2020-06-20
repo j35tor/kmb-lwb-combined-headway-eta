@@ -13,31 +13,23 @@
         <script src="scripts/Variant.js"></script>
         <script src="scripts/Eta.js"></script>
         <script src="scripts/ui.js"></script>
+        <script src="scripts/event.js"></script>
         <title>KMB &amp; LWB combined ETA</title>
     </head>
     <body>
-        <table id="eta">
-            <thead>
-                <tr><th>Time</th><th>Route</th><th>Distance (m)</th><th>Remark</th></tr>
-            </thead>
-            <tbody />
-        </table>
-        <div>
-            <div id="eta_loading">Loading</div>
-            <div>Last updated: <span id="eta_last_updated"/></div>
-        </div>
-        <p id="failure"/>
+
         <form>
             <p>
-                <label>Enter the route number: <input id="route" name="route" maxlength="4"/></label><br/>
-                <input id="bound" name="bound" type="hidden" value="1" />
-                <input type="submit" id="route_submit"/>
+                <label>Enter the route number: <input id="route" name="route" maxlength="4"/></label>
+                <input type="submit" id="route_submit"/><br/>
                 <button id="switch_direction" type="button" disabled="disabled">Switch direction</button>
+                <input id="bound" name="bound" type="hidden" value="1" />
                 <span id="direction"/>
                 <br/>
                 <label>Choose a route variant: <select id="variant_list" name="variant" disabled="disabled"/></label><br/>
             </p>
         </form>
+        <p id="failure"/>
         <form id="form">
             <p>
                 <label>Choose a stop in the list: <select id="stop_list" name="stop" disabled="disabled"/></label>
@@ -48,6 +40,26 @@
                 <div id="route_list_loading">Loading - <span id="route_list_count">0</span> route(s) remaining</div>
             </div>
         </form>
+        <br />
+        <button id="bookmark" type="button">Bookmark</button>
+        Bookmark Label:<input id="bookmark_label" name="bookmark_label" maxlength="4"/>
+
+        <table id="bookmarkStore" border="1" >
+        </table>
+
+        <br />
+        <table id="eta">
+            <thead>
+                <tr><th>Time</th><th>Route</th><th>Distance (m)</th><th>Remark</th></tr>
+            </thead>
+            <tbody />
+        </table>
+        <div>
+            <div id="eta_loading">Loading</div>
+            <div>Last updated: <span id="eta_last_updated"/></div>
+        </div>
+
+
         <p>
             © Michael Tsang 2020, released under <a href="https://opensource.org/licenses/AGPL-3.0">AGPL 3.0 Licence</a>.<br/>
             <a href="https://github.com/miklcct/kmb-lwb-combined-headway-eta">Source available on Github.</a>
