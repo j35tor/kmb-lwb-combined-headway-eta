@@ -412,33 +412,80 @@ $(document).ready(
         // function dummy() { };
         $bookmark.click(
             function() {
-
-                          alert ( event.target.id + "_" + window.location + " " +
+						 if ( document.getElementById("bookmark_label").value === '_clearAll' ) 
+						 { 
+					       localStorage.clear();
+						   reFreshTable();						   
+						   return;
+						 } 
+						 
+						 if ( document.getElementById("bookmark_label").value != '' ) {
+                          /* alert ( event.target.id + "_" + window.location + " " +
                                 document.getElementById("bookmark_label").value
-                                )
-                          /* localStorage.setItem( document.getElementById("bookmark_label").value ,
-                                  window.location ) */
+                                ) */
+							localStorage.setItem( document.getElementById("bookmark_label").value ,
+                                  window.location );
 
+						        }	  
+						  
+						  reFreshTable(); 		  
+						  
                       }
 
                       );
 
-        //  $bookmarkStore.click( function() {  alert("This is Store") } )
+        $bookmarkStore.click( 
+			function() {  
+						
+						var my_table_node = 
+							document.getElementById(event.target.id).parentElement.parentElement.children ; 
+																	
+						for ( var i=0 ; i < my_table_node.length; i++)
+							{ my_table_node[i].firstElementChild.style.color = "black"; }
+						
+						if ( event.target.id.substring(0,6) === "lsKey_" )
+							{ document.getElementById(event.target.id).style.color = "blue"; 
+						      window.location = localStorage.getItem( event.target.id.split("_")[1] );
+							}
+						 }
+						)
 //=======================
 
-        /*function html_table_header(localID)
+        function html_table_header(localID)
         {
           var mylocalStore = document.getElementById(localID);
           document.getElementById(localID).innerHTML = "";
           var tableHeader =   mylocalStore.insertRow() ;
           var keyHeaderCell = tableHeader.insertCell(0) ;
-          keyHeaderCell.innerHTML = "Key" ;
+          keyHeaderCell.innerHTML = "Bookmarks:" ;
           keyHeaderCell.id = "keyHeader" ;
+		  /*
           var valueHeaderCell = tableHeader.insertCell(1) ;
           valueHeaderCell.innerHTML = "Value" ;
           valueHeaderCell.id = "valueHeader"
+		  */
         }
-        */
+		
+		
+		function reFreshTable()
+		{
+		var mylocalStore = document.getElementById("bookmarkStore");
+		html_table_header("bookmarkStore");
+
+		Object.keys( localStorage ).forEach( function(key,value)
+          { var rowNum = mylocalStore.insertRow();
+            var keyCell = rowNum.insertCell(0);
+            keyCell.innerHTML = key ;
+            keyCell.id = "lsKey_"+ key ;
+			/*
+            var localStorgeString = localStorage.getItem( key );
+            var keyCell2 = rowNum.insertCell(1);
+            keyCell2.innerHTML = localStorgeString.substring(0,15) + '...' ;
+            keyCell2.id = "lsVal_"+ key ; 
+			*/
+			})
+		} ;  // eo function reFreshTable;
+        
 //=========================
         $stop_list.change(
             function () {
@@ -565,7 +612,9 @@ $(document).ready(
                 );
                 $common_route_list.data('stop_id', stop_id);
             }
-        }
+        
+			reFreshTable();
+		}
 
         window.addEventListener('popstate', init);
 
