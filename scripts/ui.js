@@ -64,6 +64,7 @@ $(document).ready(
         const $eta_last_updated = $('#eta_last_updated');
         const $variant_list = $('#variant_list');
         const $one_departure = $('#one_departure');
+		const $clearTrip = $('#clearTrip');
         const $bookmark = $('#bookmark');
         const $bookmarkStore = $('#bookmarkStore');
 
@@ -409,24 +410,34 @@ $(document).ready(
                 + ' combined ETA';
         }
 
-        // function dummy() { };
+		$clearTrip.click( 
+		function() { window.location.search = "" ; } ); 
+		
+		
+		
         $bookmark.click(
             function() {
-						 if ( document.getElementById("bookmark_label").value === '_clearAll' ) 
+						 if ( document.getElementById("bookmark_label").value === ':clearAll' ) 
 						 { 
 					       localStorage.clear();
 						   reFreshTable();						   
 						   return;
 						 } 
 						 
+						 if ( document.getElementById("bookmark_label").value.includes(":") ) 
+						 { 
+					       alert ("Please do NOT use ':' in the bookmarks")						   
+						   return;
+						 }
+						 
+						 
+						 
 						 if ( document.getElementById("bookmark_label").value != '' ) {
-                          /* alert ( event.target.id + "_" + window.location + " " +
-                                document.getElementById("bookmark_label").value
-                                ) */
+                          
 							localStorage.setItem( document.getElementById("bookmark_label").value ,
                                   window.location );
 
-						        }	  
+						    }	  
 						  
 						  reFreshTable(); 		  
 						  
@@ -437,16 +448,14 @@ $(document).ready(
         $bookmarkStore.click( 
 			function() {  
 						
-						var my_table_node = 
-							document.getElementById(event.target.id).parentElement.parentElement.children ; 
-																	
-						for ( var i=0 ; i < my_table_node.length; i++)
-							{ my_table_node[i].firstElementChild.style.color = "black"; }
 						
-						if ( event.target.id.substring(0,6) === "lsKey_" )
-							{ document.getElementById(event.target.id).style.color = "blue"; 
-						      window.location = localStorage.getItem( event.target.id.split("_")[1] );
+						if ( event.target.id.substring(0,6) === "lsKey:" )
+							{ 
+							 window.location = localStorage.getItem( event.target.id.split(":")[1] );
+							 document.getElementById(event.target.id).style.color = "blue";
 							}
+							
+						  //  reFreshTable();	
 						 }
 						)
 //=======================
@@ -459,11 +468,7 @@ $(document).ready(
           var keyHeaderCell = tableHeader.insertCell(0) ;
           keyHeaderCell.innerHTML = "Bookmarks:" ;
           keyHeaderCell.id = "keyHeader" ;
-		  /*
-          var valueHeaderCell = tableHeader.insertCell(1) ;
-          valueHeaderCell.innerHTML = "Value" ;
-          valueHeaderCell.id = "valueHeader"
-		  */
+		  
         }
 		
 		
@@ -476,14 +481,8 @@ $(document).ready(
           { var rowNum = mylocalStore.insertRow();
             var keyCell = rowNum.insertCell(0);
             keyCell.innerHTML = key ;
-            keyCell.id = "lsKey_"+ key ;
-			/*
-            var localStorgeString = localStorage.getItem( key );
-            var keyCell2 = rowNum.insertCell(1);
-            keyCell2.innerHTML = localStorgeString.substring(0,15) + '...' ;
-            keyCell2.id = "lsVal_"+ key ; 
-			*/
-			})
+            keyCell.id = "lsKey:"+ key ;
+		   })
 		} ;  // eo function reFreshTable;
         
 //=========================
