@@ -26,11 +26,11 @@
   e.g. choosing 71S at Kwong Fuk Playground, then choose Tai Po Market Station (TA10-T-1250-0),
   both stopping of 71S at that same pole will be selected automatically.
 
-## Features extended from my addon works
+## Features extended in my addon works
 
-* Change the layout
+* Change the page layout
 
-* Using the local storage in browser to store bookmarks your previous check. 
+* Using the local storage in browser to store bookmarks of your previous check.
 
 
 ## Installation
@@ -49,7 +49,8 @@ Alternatively you may type in the other routes directly into the box as well.
 of the desired combination is shown directly without selecting again.
 
 ## Demo
-[A demo instance is set up.]
+[A demo instance is set up.](https://j35tor.github.io/webtools/kmb_eta.xhtml)
+
 
 ## Issues
 * A proxy server is required to bypass the CORS restriction.
@@ -58,4 +59,5 @@ The address provided in the repository is a private proxy server which can only 
 query the KMB mobile API.
 
 ## Acknowledgement
-Thanks for the foundaation work done by Michael Tsang and please refer to the Acknowledgement section of his orginal works
+Thanks for the foundation work done by Michael Tsang and please refer to the Acknowledgement section of his orginal works
+(https://github.com/miklcct/kmb-lwb-combined-headway-eta)

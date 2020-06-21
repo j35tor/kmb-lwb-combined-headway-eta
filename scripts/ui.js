@@ -410,84 +410,62 @@ $(document).ready(
                 + ' combined ETA';
         }
 
-		$clearTrip.click( 
-		function() { window.location.search = "" ; } ); 
-		
-		
-		
-        $bookmark.click(
+		    $clearTrip.click(
+		            function() { window.location.search = "" ; } );
+
+		    $bookmark.click(
             function() {
-						 if ( document.getElementById("bookmark_label").value === ':clearAll' ) 
-						 { 
+						 if ( document.getElementById("bookmark_label").value === ':clearAll' )
+						 {
 					       localStorage.clear();
-						   reFreshTable();						   
-						   return;
-						 } 
-						 
-						 if ( document.getElementById("bookmark_label").value.includes(":") ) 
-						 { 
-					       alert ("Please do NOT use ':' in the bookmarks")						   
+						   reFreshTable();
 						   return;
 						 }
-						 
-						 
-						 
-						 if ( document.getElementById("bookmark_label").value != '' ) {
-                          
-							localStorage.setItem( document.getElementById("bookmark_label").value ,
-                                  window.location );
 
-						    }	  
-						  
-						  reFreshTable(); 		  
-						  
-                      }
+						 if ( document.getElementById("bookmark_label").value.includes(":") )
+						{ alert ("Please do NOT use ':' in the bookmarks"); return; }
 
-                      );
+						if ( document.getElementById("bookmark_label").value != '' )
+            { localStorage.setItem( document.getElementById("bookmark_label").value , window.location ); }
 
-        $bookmarkStore.click( 
-			function() {  
-						
-						
+						reFreshTable();
+						}
+
+        );
+
+        $bookmarkStore.click( function() {
+
 						if ( event.target.id.substring(0,6) === "lsKey:" )
-							{ 
-							 window.location = localStorage.getItem( event.target.id.split(":")[1] );
-							 document.getElementById(event.target.id).style.color = "blue";
-							}
-							
-						  //  reFreshTable();	
-						 }
+							{  window.location = localStorage.getItem( event.target.id.split(":")[1] ); }
+
+						   }
 						)
-//=======================
 
-        function html_table_header(localID)
-        {
-          var mylocalStore = document.getElementById(localID);
-          document.getElementById(localID).innerHTML = "";
-          var tableHeader =   mylocalStore.insertRow() ;
-          var keyHeaderCell = tableHeader.insertCell(0) ;
-          keyHeaderCell.innerHTML = "Bookmarks:" ;
-          keyHeaderCell.id = "keyHeader" ;
-		  
-        }
-		
-		
-		function reFreshTable()
-		{
-		var mylocalStore = document.getElementById("bookmarkStore");
-		html_table_header("bookmarkStore");
+          function html_table_header(localID) {
+              var mylocalStore = document.getElementById(localID);
+              document.getElementById(localID).innerHTML = "";
+              var tableHeader =   mylocalStore.insertRow() ;
+              var keyHeaderCell = tableHeader.insertCell(0) ;
+              keyHeaderCell.innerHTML = "Bookmarks:" ;
+              keyHeaderCell.id = "keyHeader" ;
+		          }
 
-		Object.keys( localStorage ).forEach( function(key,value)
-          { var rowNum = mylocalStore.insertRow();
-            var keyCell = rowNum.insertCell(0);
-            keyCell.innerHTML = key ;
-            keyCell.id = "lsKey:"+ key ;
-		   })
-		} ;  // eo function reFreshTable;
-        
+
+		      function reFreshTable()  {
+                var mylocalStore = document.getElementById("bookmarkStore");
+                html_table_header("bookmarkStore");
+
+		            Object.keys( localStorage ).forEach( function(key,value) {
+                  var rowNum = mylocalStore.insertRow();
+                  var keyCell = rowNum.insertCell(0);
+                  keyCell.innerHTML = key ;
+                  keyCell.id = "lsKey:"+ key ;
+		              })
+		           } ;  // eo function reFreshTable;
+
 //=========================
-        $stop_list.change(
-            function () {
+          $stop_list.change(
+              function () {
                 /** @var {Stop|undefined} */
                 const stop = $('#stop_list option:checked').first().data('model');
                 if (stop !== undefined) {
@@ -611,7 +589,7 @@ $(document).ready(
                 );
                 $common_route_list.data('stop_id', stop_id);
             }
-        
+
 			reFreshTable();
 		}
 
