@@ -439,7 +439,7 @@ $(document).ready(
                 , selected_stop !== undefined ? selected_stop.name : (localStorage[Common.getQueryStopId()] ?? null));
         }
 
-<<<<<<< HEAD
+
 		    $clearTrip.click(
 		            function() { window.location.search = "" ; } );
 

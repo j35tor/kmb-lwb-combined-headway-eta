@@ -1,7 +1,10 @@
-<<<<<<< HEAD
+
+## [1.1]
+* merge with upstream work [1.9.0]
+
 ## [1.0]
 * initial fork from the work of Michael Tsang
-=======
+
 ## [1.9.0] (2020-10-16)
 * use module-based JS and async / await
 
