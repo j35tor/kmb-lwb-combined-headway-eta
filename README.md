@@ -49,8 +49,12 @@ Alternatively you may type in the other routes directly into the box as well.
 of the desired combination is shown directly without selecting again.
 
 ## Demo
+<<<<<<< HEAD
 [A demo instance is set up.](https://j35tor.github.io/webtools/kmb_eta.xhtml)
 
+=======
+[A demo instance is set up.](https://miklcct.com/kmb_eta/)
+>>>>>>> upstream/master
 
 ## Issues
 * A proxy server is required to bypass the CORS restriction.
